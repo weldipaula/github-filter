@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import {parseISO} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import GlobalStyle from '../globalStyles'
 import { Container } from './styled'
 import { FaGithub } from 'react-icons/fa';
 
@@ -81,6 +82,7 @@ function App() {
 
   return (
     <>
+    <GlobalStyle />
     <Container>
       <div className="c-filters">
         <div className='title'>
