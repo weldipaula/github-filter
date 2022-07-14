@@ -9,6 +9,57 @@ export const Container = styled.div `
   width: 100vw ;
   margin: 0 auto;
 
+  .title {
+    display: flex ;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .c-user {
+    display: flex;
+    width: 100% ;
+    padding: 1rem 0;
+
+      input {
+        width: 100% ;
+        font-size: 1rem;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        padding: 1rem 0 1rem .5rem  ;
+        border-bottom: 1px solid black;
+        font-weight: bold ;
+
+        &:focus {
+          outline: 0 ;
+          border-bottom: 1px solid #808000
+        }
+      }
+    .user-btn {
+      display: flex;
+      align-items: flex-end;
+
+
+      button {
+        font-size: 1rem;
+        margin-left: 1rem;
+        padding: 1rem 1rem ;
+        border: 0;
+        border-radius: .25rem;
+        transition: linear .2s ;
+        text-transform: uppercase ;
+        font-weight: bold ;
+        color: #000;
+
+
+        &:hover {
+          box-shadow: 0px 1px 2px 2px #808000 ;
+        }
+      }
+    }
+  }
+
   .c-filters {
     min-width: 50%;
     margin: 1rem 0 ;
@@ -26,7 +77,6 @@ export const Container = styled.div `
     display: flex;
     flex-direction: row ;
     align-items: center;
-
     justify-content: space-between;
     
     .search-bar {

@@ -2,22 +2,29 @@ import { useState, useEffect } from 'react'
 import {parseISO} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { Container } from './styled'
+import { FaGithub } from 'react-icons/fa';
 
 
 function App() {
   const [data, setData] = useState([])
   const [render, setRender] = useState([])
   const [search, setSearch] = useState()
+  const [user, setUser] = useState()
+  const [renderUser, setRenderUser] = useState('')
 
   useEffect(()=>{
     async function getData () {
-      const response = await fetch('https://api.github.com/users/weldipaula/repos')
+      const response = await fetch(`https://api.github.com/users/${user || 'weldipaula'}/repos`)
       const dataRepo = await response.json();
       setData(dataRepo)
       setRender(dataRepo)
     }
     getData()
-  },[])
+  },[user])
+
+  function handleUser() {
+    setUser(renderUser)
+  }
 
   function handleFilterArchived () {
     const repoArchived = []
@@ -60,7 +67,7 @@ function App() {
   function handleFilterString () {
     const filterString = []
     data.map(repo => {
-      if(repo.name.includes(search)){
+      if(repo.name.includes(search.toLowerCase())){
         filterString.push(repo)
       }
     })
@@ -76,6 +83,27 @@ function App() {
     <>
     <Container>
       <div className="c-filters">
+        <div className='title'>
+          <h2>Buscador github</h2>
+          <FaGithub size={24}/>
+        </div>
+        <div className="c-user">
+          <input 
+            type="text" 
+            name='user'
+            id="user"
+            placeholder='usuario'
+            value={renderUser}
+            onChange={(e)=> setRenderUser(e.target.value)}
+          />
+          <div className="user-btn">
+            <button 
+              onClick={handleUser}
+              >Buscar
+            </button>
+          </div>
+        </div>
+
         <div className="c-search">
         <div className="search-bar">
           <input 
